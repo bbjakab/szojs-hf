@@ -1,0 +1,45 @@
+<%- include('header') -%>
+
+<div class="text-center">
+    <h2> <%= locals.elado.nev%>
+        ajánlatai</h2>
+</div>
+
+<%- include('menu') -%>
+
+<div class="container">
+    <table class="table table-sm table-bordered table-striped">
+        <thead class="text-center">
+            <tr>
+                <th>Név</th>
+                <th>Leírás</th>
+                <th>Ár</th>
+            </tr>
+        </thead>
+        <tbody class="text-left">
+            <% locals.ajanlatok.forEach(function(ajanlat) {%>
+            <tr>
+                <td>
+                    <%= ajanlat.nev%>
+                </td>
+                <td>
+                    <%= ajanlat.leiras%>
+                </td>
+                <td>
+                    <%= ajanlat.ar%> Ft
+                </td>
+                <td>
+                    <a href="/elado/<%= ajanlat._elado._id %>/ajanlat/<%= ajanlat._id %>/edit" class="btn btn-sm btn-secondary">Szerkesztés</a>
+                    <a href="/elado/<%= ajanlat._elado._id %>/ajanlat/<%= ajanlat._id %>/delete" class="btn btn-sm btn-danger" onclick="return confirm('Ezzel törli az ajánlatot az adatbázisból.\nBiztosan folytatja?');">Törlés</a>
+                </td>
+
+            </tr>
+            <% });%>
+        </tbody>
+    </table>
+    <div>
+        <a href="/elado/<%= elado._id %>/ajanlat/new">Új ajánlat hozzáadása</a>
+    </div>
+</div>
+
+<%- include('footer') -%>

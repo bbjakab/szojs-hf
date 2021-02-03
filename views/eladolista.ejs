@@ -1,0 +1,44 @@
+<%- include('header') -%>
+    <div class="text-center">
+        <h2>Eladók</h2>
+    </div>
+
+<%- include('menu') -%>
+
+    <div class="container">
+        <table class="table table-sm table-bordered table-striped">
+            <thead class="text-center">
+                <tr>
+                    <th>Név</th>
+                    <th>Cím</th>
+                    <th>Telefonszám</th>
+                </tr>
+            </thead>
+            <tbody class="text-left">
+                <% locals.eladok.forEach(function(elado) {%>
+                    <tr>
+                        <td>
+                            <%= elado.nev%>
+                        </td>
+                        <td>
+                            <%= elado.cim%>
+                        </td>
+                        <td>
+                            <%= elado.tel%>
+                        </td>
+                        <td>
+                            <a href="/elado/<%= elado._id %>/ajanlat" class="btn btn-sm btn-primary">Ugrás az ajánlatokhoz</a>
+                            <a href="/elado/<%= elado._id %>/edit" class="btn btn-sm btn-secondary">Szerkesztés</a>
+                            <a href="/elado/<%= elado._id %>/delete" class="btn btn-sm btn-danger" onclick="return confirm('Ezzel törli az eladót, az összes ajánlatával együtt.\nBizonsan folytatja?');">Törlés</a>
+                        </td>
+                    </tr>
+                <% });%>
+            </tbody>
+        </table>
+        <div>
+            <a href="/elado/new">Új eladó hozzáadása</a>
+        </div>
+    </div>
+
+
+<%- include('footer') -%>
